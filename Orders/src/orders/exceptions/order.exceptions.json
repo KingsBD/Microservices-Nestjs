@@ -1,0 +1,22 @@
+{
+  "8000": {
+    "code": 8000,
+    "error": "No orders found"
+  },
+  "8001": {
+    "code": 8001,
+    "error": "The requested order was not found"
+  },
+  "8002": {
+    "code": 8002,
+    "error": "The requested order could not be created"
+  },
+  "8003": {
+    "code": 8003,
+    "error": "The requested order could not be updated"
+  },
+  "8004": {
+    "code": 8004,
+    "error": "The requested order could not be deleted"
+  }
+}

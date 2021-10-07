@@ -1,0 +1,22 @@
+{
+  "7000": {
+    "code": 7000,
+    "error": "No users found"
+  },
+  "7001": {
+    "code": 7001,
+    "error": "The requested user was not found"
+  },
+  "7002": {
+    "code": 7002,
+    "error": "The requested user could not be created"
+  },
+  "7003": {
+    "code": 7003,
+    "error": "The requested user could not be updated"
+  },
+  "7004": {
+    "code": 7004,
+    "error": "The requested user could not be deleted"
+  }
+}
