@@ -1,0 +1,19 @@
+services:
+  mongodb:
+    image: mongo
+    expose:
+      - '27017'
+    volumes:
+      - db:/data/db
+  users_microservice_app:
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - '3002:3002'
+    volumes:
+      - .:/home/node_users/app
+      - /home/node_users/app/node_modules
+
+volumes:
+  db:

@@ -1,0 +1,62 @@
+services:
+  mongodb:
+    image: mongo
+    expose:
+      - "27017"
+    volumes:
+      - db:/data/db
+    networks:
+      - nestjs_microservice_app
+  nestjs_orders_microservice_app:
+    build: ./Orders
+    depends_on:
+      - mongodb
+    volumes:
+      - nestjs_orders_microservice_volume:/home/node_orders/app
+    ports:
+      - "3001:3001"
+    networks:
+      - nestjs_microservice_app
+  nestjs_users_microservice_app:
+    build: ./Users
+    depends_on:
+      - mongodb
+    volumes:
+      - nestjs_users_microservice_volume:/home/node_users/app
+    ports:
+      - "3002:3002"
+    networks:
+      - nestjs_microservice_app
+  nestjs_auth_microservice_app:
+    build: ./Auth
+    volumes:
+      - nestjs_auth_microservice_volume:/home/node_auth/app
+    links:
+      - nestjs_users_microservice_app
+    ports:
+      - "3003:3003"
+      - "3004:3004"
+    networks:
+      - nestjs_microservice_app
+  nestjs_gateway_app:
+    build: ./Gateway
+    ports:
+      - "8080:3000"
+    volumes:
+      - nestjs_gateway_volume:/home/node_gateway/app
+    links:
+      - nestjs_orders_microservice_app
+      - nestjs_users_microservice_app
+      - nestjs_auth_microservice_app
+    networks:
+      - nestjs_microservice_app
+
+volumes:
+  db:
+  nestjs_orders_microservice_volume:
+  nestjs_users_microservice_volume:
+  nestjs_auth_microservice_volume:
+  nestjs_gateway_volume:
+
+networks:
+  nestjs_microservice_app:

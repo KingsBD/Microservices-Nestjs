@@ -1,0 +1,19 @@
+services:
+  mongodb:
+    image: mongo
+    expose:
+      - '27017'
+    volumes:
+      - db:/data/db
+  nestjs_orders_microservice_app:
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - '8080:3001'
+    volumes:
+      - .:/home/node_orders/app
+      - /home/node_orders/app/node_modules
+
+volumes:
+  db:

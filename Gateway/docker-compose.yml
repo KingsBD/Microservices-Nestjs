@@ -1,0 +1,19 @@
+services:
+  mongodb:
+    image: mongo
+    expose:
+      - '27017'
+    volumes:
+      - db:/data/db
+  nestjs_gateway_app:
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - '8080:3000'
+    volumes:
+      - .:/home/node_gateway/app
+      - /home/node_gateway/app/node_modules
+
+volumes:
+  db:
