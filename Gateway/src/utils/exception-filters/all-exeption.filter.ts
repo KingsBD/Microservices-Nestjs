@@ -9,6 +9,7 @@ import { BaseExceptionFilter } from '@nestjs/core';
 @Catch()
 export class AllExceptionsFilter extends BaseExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
+    console.log('------------->exception', exception);
     // super.catch(exception, host);
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
