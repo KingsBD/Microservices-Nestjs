@@ -12,9 +12,9 @@ RUN npm install glob rimraf
 
 RUN npm install --only=development
 
-RUN npm run build
-
 COPY --chown=node:node . .
+
+RUN npm run build
 
 EXPOSE 3001
 
